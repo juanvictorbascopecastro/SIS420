@@ -34,7 +34,7 @@ contador_rama = len(inicio) - 1
 cont = 0
 while (existe == False):
     while (cont < contador_rama and existe == False):
-        print("Rama: ", cont);
+        print("Base: ", cont);
         existe = combinar(resultados[cont]);
         cont = cont + 1
     
