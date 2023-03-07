@@ -1,3 +1,5 @@
+import sys
+
 class Nodo:
     def __init__(self, estado, hijo=None):
         self.estado = estado
@@ -102,13 +104,45 @@ def busqueda_BPA_solucion(estado_inicial, solucion):
                   
             nodo_actual.set_hijo(mis_hijos)
 
+def verificarArray(arr1, arr2):
+    cont = 0
+    valores = 0
+    while(cont < len(arr1)):
+        cont2 = 0
+        while(cont2 < len(arr2)):
+            if(arr1[cont] == arr2[cont2]):
+                valores +=1
+                cont2 = len(arr2) # para salir del bucle
+            cont2 += 1
+        cont += 1
+    print(valores, len(arr2))
+    if(valores >= len(arr1)): return True
+    else: return False
+
+
 
 
 if __name__ == "__main__":
-    # estado_inicial = [3, 2, 0, 1, 5, 6, 4]
-    # solucion = [0, 1, 2, 3, 4, 5, 6]
-    estado_inicial = [3, 2, 0, 1, 4]
-    solucion = [0, 1, 2, 3, 4]
+    # estado_inicial = [3, 2, 0, 1, 4]
+    # solucion = [0, 1, 2, 3, 4]
+    estado_inicial = []
+    solucion = []
+    
+    # ingrear la longitud de la secuencia
+    n = int(input('Ingresar la longitud del arreglo: '))
+    for i in range(0, n):
+        x = input(f'Ingresar en valor de estado inicial en la posicion {i}: ')
+        estado_inicial.append(x)
+    # ingresamos los valores de la solucion
+    for i in range(0, n):
+        x = input(f'Ingresar en valor de la solucion en la posicion {i}: ')
+        solucion.append(x)
+    # verificamos si los valores coiciden entre los dos arreglo
+    todo_correcto = verificarArray(estado_inicial, solucion)
+    if(todo_correcto == False): 
+        sys.exit('Los valores entre ambos arreglos no coinciden!')
+    
+    # SI TODO ESTA CORRECTO CONTINUAMOS CON LA SOLUCION
     nodo_solucion = busqueda_BPA_solucion(estado_inicial, solucion)
     # mostrar resultado
     resultado = []

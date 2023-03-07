@@ -8,7 +8,7 @@ laberinto = [
     [1, 0, 0, 0, 1, 1, 0, 1],
     [1, 1, 1, 1, 1, 1, 0, 1],
     [1, 1, 1, 1, 1, 1, 0, 0],
-    [1, 1, 1, 1, 1, 1, 1, 0]
+    [1, 1, 1, 1, 1, 1, 1, 1]
 ]
 # print(posiciones)
 def recorrer_laberinto():
@@ -32,6 +32,8 @@ def recorrer_laberinto():
             movimientos.append('izquierda')
         else: 
             movimientos.append('no hay salida')
+        if(movimientos[ultimo] == 'no hay salida'): columna = len(laberinto)+1 #para finalizar el bucle
+         
     return movimientos
 
 print(recorrer_laberinto())
