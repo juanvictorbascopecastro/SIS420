@@ -1,4 +1,5 @@
 import sys
+import time
 
 class Nodo:
     def __init__(self, estado, hijo=None):
@@ -92,7 +93,7 @@ def busqueda_BPA_solucion(estado_inicial, solucion):
             i = 0
             while (i < len(nodo_actual.get_estado())-1):
                 # expandir nodos hijo
-                hijo = nodo_actual.get_estado().copy()
+                hijo = nodo_actual.get_estado().copy() # [:] para guardar una copia
                 auxi = hijo[i]
                 hijo[i] = hijo[i+1]
                 hijo[i+1] = auxi
@@ -104,6 +105,7 @@ def busqueda_BPA_solucion(estado_inicial, solucion):
                   
             nodo_actual.set_hijo(mis_hijos)
 
+# metodo para validar que los valores sean correctos entre ambos arreglo
 def verificarArray(arr1, arr2):
     cont = 0
     valores = 0
@@ -115,7 +117,6 @@ def verificarArray(arr1, arr2):
                 cont2 = len(arr2) # para salir del bucle
             cont2 += 1
         cont += 1
-    print(valores, len(arr2))
     if(valores >= len(arr1)): return True
     else: return False
 
@@ -123,11 +124,11 @@ def verificarArray(arr1, arr2):
 
 
 if __name__ == "__main__":
-    # estado_inicial = [3, 2, 0, 1, 4]
-    # solucion = [0, 1, 2, 3, 4]
+    # estado_inicial = [3, 2, 0, 1, 4, 6, 7, 5]
+    # solucion = [0, 1, 2, 3, 4, 5, 6, 7]
+
     estado_inicial = []
     solucion = []
-    
     # ingrear la longitud de la secuencia
     n = int(input('Ingresar la longitud del arreglo: '))
     for i in range(0, n):
@@ -142,6 +143,8 @@ if __name__ == "__main__":
     if(todo_correcto == False): 
         sys.exit('Los valores entre ambos arreglos no coinciden!')
     
+    
+    tiempo_inicial = time.time()
     # SI TODO ESTA CORRECTO CONTINUAMOS CON LA SOLUCION
     nodo_solucion = busqueda_BPA_solucion(estado_inicial, solucion)
     # mostrar resultado
@@ -155,3 +158,6 @@ if __name__ == "__main__":
     resultado.append(estado_inicial)
     resultado.reverse()
     print(resultado)
+    tiempo_trascurrido = round(time.time()-tiempo_inicial, 10)
+    print('Duracion:', (tiempo_trascurrido % 60) , 'segundos')
+
