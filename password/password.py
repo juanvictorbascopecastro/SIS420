@@ -1,7 +1,8 @@
 import time
 import sys
 from Nodos import Nodo
-# sys.path.append("..")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from Metodos import Metodos
 
 
@@ -61,4 +62,5 @@ if __name__ == "__main__":
     resultado.append(estado_inicial)
     resultado.reverse()
     print(resultado)
+    print("Nodos abiertos: ", len(resultado))
     print("Tiempo de ejecucion: ", fin - inicio)

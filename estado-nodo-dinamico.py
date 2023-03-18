@@ -1,76 +1,8 @@
+# Estudiante: Bascope Castro Juan Victor
+# Carrera: Ing. de Sistemas.
 import sys
 import time
-
-class Nodo:
-    def __init__(self, estado, hijo=None):
-        self.estado = estado
-        self.hijo = None
-        self.padre = None
-        self.accion = None
-        self.acciones = None
-        self.costo = None
-        self.set_hijo(hijo)
-
-    def set_estado(self, estado):
-        self.estado = estado
-
-    def get_estado(self):
-        return self.estado
-
-    def set_hijo(self, hijo):
-        self.hijo = hijo
-        if self.hijo is not None:
-            for s in self.hijo:
-                s.padre = self
-
-    def get_hijo(self):
-        return self.hijo
-    
-    def set_padre(self, padre):
-        self.padre = padre
-
-    def get_padre(self):
-        return self.padre
-    
-    def set_accion(self, accion):
-        self.accion = accion
-
-    def get_accion(self):
-        return self.accion
-
-    def set_acciones(self, acciones):
-        self.acciones = acciones
-
-    def get_acciones(self):
-        return self.acciones
-
-    def set_costo(self, costo):
-        self.costo = costo
-
-    def get_costo(self):
-        return self.costo
-
-    def equal(self, Nodo):
-        if self.get_estado() == Nodo.get_estado():
-            return True
-        else:
-            return False
-
-    def en_lista(self, lista_nodos):
-        enlistado = False
-        for n in lista_nodos:
-            if self.equal(n):
-                enlistado = True
-        return enlistado
-
-    def __str__(self):
-        return str(self.get_estado())
-
-
-def cambiar_estado(nodo, i, j):
-    nodo[j], nodo[i] = nodo[i], nodo[j] # el nodo en la posicion j debe tomar el siguiente valor
-    return nodo
-
+from nodos.Nodos import Nodo
 
 def busqueda_BPA_solucion(estado_inicial, solucion):
     resuelto = False
@@ -124,24 +56,24 @@ def verificarArray(arr1, arr2):
 
 
 if __name__ == "__main__":
-    # estado_inicial = [3, 2, 0, 1, 4, 6, 7, 5]
-    # solucion = [0, 1, 2, 3, 4, 5, 6, 7]
+    estado_inicial = [7, 6, 5, 4, 3, 2, 1, 0]
+    solucion = [0, 1, 2, 3, 4, 5, 6, 7]
 
-    estado_inicial = []
-    solucion = []
+    # estado_inicial = []
+    # solucion = []
     # ingrear la longitud de la secuencia
-    n = int(input('Ingresar la longitud del arreglo: '))
-    for i in range(0, n):
-        x = input(f'Ingresar en valor de estado inicial en la posicion {i}: ')
-        estado_inicial.append(x)
-    # ingresamos los valores de la solucion
-    for i in range(0, n):
-        x = input(f'Ingresar en valor de la solucion en la posicion {i}: ')
-        solucion.append(x)
-    # verificamos si los valores coiciden entre los dos arreglo
-    todo_correcto = verificarArray(estado_inicial, solucion)
-    if(todo_correcto == False): 
-        sys.exit('Los valores entre ambos arreglos no coinciden!')
+    # n = int(input('Ingresar la longitud del arreglo: '))
+    # for i in range(0, n):
+    #     x = input(f'Ingresar en valor de estado inicial en la posicion {i}: ')
+    #     estado_inicial.append(x)
+    # # ingresamos los valores de la solucion
+    # for i in range(0, n):
+    #     x = input(f'Ingresar en valor de la solucion en la posicion {i}: ')
+    #     solucion.append(x)
+    # # verificamos si los valores coiciden entre los dos arreglo
+    # todo_correcto = verificarArray(estado_inicial, solucion)
+    # if(todo_correcto == False): 
+    #     sys.exit('Los valores entre ambos arreglos no coinciden!')
     
     
     tiempo_inicial = time.time()
@@ -158,6 +90,7 @@ if __name__ == "__main__":
     resultado.append(estado_inicial)
     resultado.reverse()
     print(resultado)
+    print("Nodos abiertos: ", len(resultado))
     tiempo_trascurrido = round(time.time()-tiempo_inicial, 10)
     print('Duracion:', (tiempo_trascurrido % 60) , 'segundos')
 
