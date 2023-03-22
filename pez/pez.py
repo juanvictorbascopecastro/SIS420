@@ -55,9 +55,9 @@ class Pez:
             nodo_inicial = self.cambiarValor(nodo_inicial)
 
             for nodo_hijo in nodo_inicial.get_hijo():
-                res = self.heuristica(nodo_inicial, nodo_solucion)
+                numero = self.heuristica(nodo_inicial, nodo_solucion)
                 # si el nodo hijo no esta en visitados
-                if not nodo_hijo.get_estado() in visitado and res >= 5: # en la heolistica verificamos cuantos deben estar en su posicion para entrar a todos sus nodos hijos
+                if not nodo_hijo.get_estado() in visitado and numero >= 5: # en la heolistica verificamos cuantos deben estar en su posicion para entrar a todos sus nodos hijos
                     # volvemos a llamar al metodo recursivamente
                     Solution = self.dfs(nodo_hijo, nodo_solucion, visitado)
                     if Solution is not None:
