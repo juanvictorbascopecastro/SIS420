@@ -22,7 +22,7 @@ class Pez:
         nodo = nodo.get_estado()
         for i in range(1, len(nodo)): # recorremos todas las alternativas empezando en la posicion 1
             if(nodo[i] == solucion[i]): list.append(1)
-            else: list.append(0)
+            # else: list.append(0)
 
         return sum(list)
         
@@ -55,28 +55,32 @@ class Pez:
             nodo_inicial = self.cambiarValor(nodo_inicial)
 
             for nodo_hijo in nodo_inicial.get_hijo():
-                res = self.heuristica(nodo_inicial, nodo_solucion)
+                numero = self.heuristica(nodo_inicial, nodo_solucion)
+                print(numero)
                 # si el nodo hijo no esta en visitados
-                if not nodo_hijo.get_estado() in visitado and res >= 5: # en la heolistica verificamos cuantos deben estar en su posicion para entrar a todos sus nodos hijos
+                if not nodo_hijo.get_estado() in visitado and numero >= 3: # en la heolistica verificamos cuantos deben estar en su posicion para entrar a todos sus nodos hijos
                     # volvemos a llamar al metodo recursivamente
                     Solution = self.dfs(nodo_hijo, nodo_solucion, visitado)
                     if Solution is not None:
                         return Solution
             return None
+        
+    def printArray(arr):
+        str = ''
+        for n in range(0, len(arr)):
+            str += arr[n]
+        print(str)
+
 
 if __name__ == "__main__":    
     estado_inicial = [
-        ' ', '\\', ' ',
-        '\\', '/', '\\',
-        '/', '\\', '/',
-        ' ', '/', ' '
+        ' ', '\\', '\n','\\', '/', '\\','\n', '/', '\\', '/','\n', ' ', '/', ' '
     ]
-    Pez.printPezInicial(estado_inicial)
     estado_objetivo = [
-        ' ', '/', '\\', ' ',
-        '/', '\\', '/', '\\',
-        ' ', '/', '\\', ' '
+        ' ', '/', '\\', '\n', '/', '\\', '/', '\\', '\n', ' ', '/', '\\', ' ', '\n'
     ]
+    
+    Pez.printArray(estado_inicial)
     nodo_inicial = Nodo(estado_inicial)
     nodo_actual = Pez().dfs(nodo_inicial, estado_objetivo, [])
 
@@ -88,5 +92,6 @@ if __name__ == "__main__":
     resultado.append(estado_inicial)
     resultado.reverse()
     print(resultado)
-    Pez.printPezFinal(resultado[len(resultado)-1])
+    # Pez.printPezFinal(resultado[len(resultado)-1])
+    Pez.printArray(resultado[len(resultado)-1])
 
