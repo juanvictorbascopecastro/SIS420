@@ -52,8 +52,8 @@ if __name__ == "__main__":
         estado_inicial = []
         estado_objetivo = []
 
-        contador = 5
-        for n in list(range(6)):
+        contador = 8
+        for n in list(range(9)):
             estado_inicial.append(contador+1)
             estado_objetivo.append(n+1)
             contador -= 1

@@ -35,7 +35,7 @@ if __name__ == "__main__":
     solucion = []
     for i in size:
         solucion.append(int(i))
-    #estado_inicial = [1, 4, 0, 0, 2, 3]
+    # estado_inicial = [1, 4, 0, 0, 2, 3]
     print("Solucion", solucion)
     nodo_solucion = None
     visitado = []

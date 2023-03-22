@@ -56,24 +56,24 @@ def verificarArray(arr1, arr2):
 
 
 if __name__ == "__main__":
-    estado_inicial = [7, 6, 5, 4, 3, 2, 1, 0]
-    solucion = [0, 1, 2, 3, 4, 5, 6, 7]
+    # estado_inicial = [7, 6, 5, 4, 3, 2, 1, 0]
+    # solucion = [0, 1, 2, 3, 4, 5, 6, 7]
 
-    # estado_inicial = []
-    # solucion = []
+    estado_inicial = []
+    solucion = []
     # ingrear la longitud de la secuencia
-    # n = int(input('Ingresar la longitud del arreglo: '))
-    # for i in range(0, n):
-    #     x = input(f'Ingresar en valor de estado inicial en la posicion {i}: ')
-    #     estado_inicial.append(x)
-    # # ingresamos los valores de la solucion
-    # for i in range(0, n):
-    #     x = input(f'Ingresar en valor de la solucion en la posicion {i}: ')
-    #     solucion.append(x)
-    # # verificamos si los valores coiciden entre los dos arreglo
-    # todo_correcto = verificarArray(estado_inicial, solucion)
-    # if(todo_correcto == False): 
-    #     sys.exit('Los valores entre ambos arreglos no coinciden!')
+    n = int(input('Ingresar la longitud del arreglo: '))
+    for i in range(0, n):
+        x = input(f'Ingresar en valor de estado inicial en la posicion {i}: ')
+        estado_inicial.append(x)
+    # ingresamos los valores de la solucion
+    for i in range(0, n):
+        x = input(f'Ingresar en valor de la solucion en la posicion {i}: ')
+        solucion.append(x)
+    # verificamos si los valores coiciden entre los dos arreglo
+    todo_correcto = verificarArray(estado_inicial, solucion)
+    if(todo_correcto == False): 
+        sys.exit('Los valores entre ambos arreglos no coinciden!')
     
     
     tiempo_inicial = time.time()
