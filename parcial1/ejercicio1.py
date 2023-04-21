@@ -1,9 +1,6 @@
 """
 EJERCICIO 1
-Desarrollar un juego de dos jugadores un humano y la computadora, el juego se desarrollará en un tablero de 3 x 3, 
-el juego consiste en tratar de lograr el mayor numero de marcaciones continuas, donde ganará el que tenga más uniones, 
-es decir marcaciones seguidas, ya sea horizontales o verticales, donde cada jugador debe marcar el mismo número de veces, 
-es decir el juego termina cuando solo queda un espacio para marcar, considere los siguientes ejemplos:
+Desarrolle un programa para encontrar la salida más cercana en el siguiente laberinto:
 """
 
 import heapq
@@ -41,7 +38,7 @@ def a_estrella(matriz, inicio, final):
                 fila = nodo[0] + x 
                 columna = nodo[1] + y
                 # validamos para que no se salga fuera de las paredes de la matriz
-                if 0 <= fila < len(matriz) and 0 <= columna < len(matriz[0]) and matriz[fila][columna] != '#':
+                if fila >= 0 and fila < len(matriz) and columna >= 0 and columna < len(matriz[0]) and matriz[fila][columna] != '#':
                     distancia_auxi = calcular_distancia(nodo, [fila, columna]) # [2, 4, 5, 8]  
                     heapq.heappush(cola, (distancia_auxi + distancia, [fila, columna], camino+[nodo])) # agrega a la cola y ordena en base # distancia_auxi + distancia 
                     # cola.append((distancia_auxi + distancia, [fila,columna], camino+[nodo]))
@@ -83,5 +80,5 @@ if __name__ == "__main__":
     # en base a la distancia minima tomamos el valor de la posicion
     final_posicion = min(distancias, key=lambda x: x['distancia'])['posicion']   
 
-    camino = a_estrella(laberinto, inicio_posicion, final_posicion)
+    camino = a_estrella(laberinto, inicio_posicion, posicion2)
     print(camino)
