@@ -27,7 +27,7 @@ def busqueda_BPPR(nodo_inicial, solucion, visitado, auxi_numero):
         
         for nodo_hijo in nodo_inicial.get_hijo():
             numero_validador = heuristica(nodo_hijo, solucion)
-            if not nodo_hijo.get_estado() in visitado and numero_validador <= auxi_numero:
+            if not nodo_hijo.get_estado() in visitado and numero_validador <= auxi_numero: # 10
                 # Llamada Recursiva
                 Solution = busqueda_BPPR(nodo_hijo, solucion, visitado, numero_validador)
                 if Solution is not None:
@@ -37,7 +37,7 @@ def busqueda_BPPR(nodo_inicial, solucion, visitado, auxi_numero):
 # se pasa un padre y la solucion
 def heuristica(hijo_node, solucion):
     hijo_data = hijo_node.get_estado()
-    list = [];
+    list = []
     for n in range(0, len(hijo_data)): # revisa todos los valores del padre
         # el nodo actual se resta sus posiciones y se convierte en valor absoluto para obtener que tan lejos esta de lo que deberia estar
         # EJEMPLO solucion = 1, 2, 3, 4  nodo_actual = 4, 3, 2, 1 entonces son 4 iteraciones 1-4=3, 2-3=1, 3-2=1, 4-1=3

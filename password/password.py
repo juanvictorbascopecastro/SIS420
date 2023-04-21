@@ -64,3 +64,4 @@ if __name__ == "__main__":
     print(resultado)
     print("Nodos abiertos: ", len(resultado))
     print("Tiempo de ejecucion: ", fin - inicio)
+    
