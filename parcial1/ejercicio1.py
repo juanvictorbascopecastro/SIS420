@@ -61,7 +61,6 @@ if __name__ == "__main__":
         ['#', ' ', ' ', 'S1', '#', '#', '#', ' ', ' ', 'S2'],
     ]
 
-    inicio = 'E'
     # determinamos cual es la salida mas sercana
 
     inicio_posicion = posiciones(laberinto, 'E')
@@ -80,5 +79,5 @@ if __name__ == "__main__":
     # en base a la distancia minima tomamos el valor de la posicion
     final_posicion = min(distancias, key=lambda x: x['distancia'])['posicion']   
 
-    camino = a_estrella(laberinto, inicio_posicion, posicion2)
+    camino = a_estrella(laberinto, inicio_posicion, final_posicion)
     print(camino)
