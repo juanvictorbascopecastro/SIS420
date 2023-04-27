@@ -170,7 +170,6 @@ class jugadorComputador(CuatroEnRaya): #hereda de la clase CuatroEnRaya
             else: # si esta jugando la maquina
                 if(puntuacion['valor'] < obj['valor']):
                     obj = puntuacion
-            print(nuevo_estado)
             # return obj
         return obj
     

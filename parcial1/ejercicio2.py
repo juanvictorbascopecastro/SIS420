@@ -14,6 +14,7 @@ class Juego:
         self.tablero = []
         for i in range(9):
             self.tablero.append(' ')
+
         self.humano = 'X'
         self.coputadora = 'O'
         # if random.randint(0, 1) == 1: # si es 1 X sera el humano
@@ -32,6 +33,13 @@ class Juego:
 
     def tablero_lleno(self, estado):
         return not ' ' in estado
+    
+    def posiciones_vacia(self, estado):
+        contador = 0
+        for n in estado:
+            if(n == ' '): contador = contador + 1
+        return contador
+
     
     def contar_resultados(self, estado, jugador):
         contador = 0
@@ -85,6 +93,9 @@ class Juego:
             posicion = jugador_computadora.mover_computadora(self.tablero)
             self.tablero[posicion] = self.coputadora
             juega_humano = True
+        # posicion = jugador_computadora.mover_computadora(self.tablero)
+        # self.tablero[posicion] = self.coputadora
+        # juega_humano = True
 
         while True:
             os.system('cls') # limpiar consola
@@ -148,7 +159,7 @@ class jugadorComputador(Juego): #hereda de la clase Juego
         return [i for i, x in enumerate(estado) if x == ' ']
     
     # generamos un tablero nuevo donde ponemos un nuevo movimiento
-    def generar_tablero(self, estado, accion):
+    def copiar_tablero(self, estado, accion):
         nuevo_estado = estado.copy()
         jugador_auxi = self.jugadas(estado)
         nuevo_estado[accion] = jugador_auxi
@@ -166,7 +177,7 @@ class jugadorComputador(Juego): #hereda de la clase Juego
         # la computadora busca la minima posicion
         otro_jugador = 'O' if jugador == 'X' else 'X' 
 
-    
+        # print(self.posiciones_vacia(estado))
         if self.tablero_lleno(estado): # si el tablero esta lleno
             return {'posicion': None, 'valor': 0} 
         
@@ -181,12 +192,15 @@ class jugadorComputador(Juego): #hereda de la clase Juego
         else:
             contador_maquina = self.contar_resultados(estado, otro_jugador)
             valor = -1 * (contador_maquina + 1)
+            # exit()
+        # if(valor > 3): 
+        #     print(valor)
 
         obj = {'posicion': None, 'valor': valor} # retornamos un objeto
         
         for posibles_movida in self.acciones(estado): # recorremos todas las movidas posib;e
             # por cada movimiento posible, ponemos la jugada en un nuevo tablero para comprobar
-            nuevo_estado = self.generar_tablero(estado, posibles_movida) 
+            nuevo_estado = self.copiar_tablero(estado, posibles_movida) 
             puntuacion = self.minimax(nuevo_estado, otro_jugador) # de forma recursiva le mandamos el jugador humano para ver sus posibles jugadas
             puntuacion['posicion'] = posibles_movida # ponemos cada posible movida
 

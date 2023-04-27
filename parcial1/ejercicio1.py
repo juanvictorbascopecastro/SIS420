@@ -5,8 +5,8 @@ Desarrolle un programa para encontrar la salida más cercana en el siguiente lab
 
 import heapq
 
-# obtenemos las posiciones en la que se encuentra el inicio y el final
-def posiciones(matriz, item):
+# obtenemos las posicion en la que se encuentra el inicio y el final
+def get_posicion(matriz, item):
     for i in range(0, len(matriz)):
         for j in range(0, len(matriz[i])):
             if(matriz[i][j] == item): return [i, j]
@@ -32,11 +32,11 @@ def a_estrella(matriz, inicio, final):
             return camino
         # si el nodo no ha sido visitado aún, agregarlo a la lista de visitados
         if nodo not in visitados:
-            visitados.append(nodo)
+            visitados.append(nodo )
             # agregar los nodos adyacentes a la cola de prioridad
             for (x, y) in [[0,1],[1,0],[0,-1],[-1,0]]:
-                fila = nodo[0] + x 
-                columna = nodo[1] + y
+                fila = nodo[0] + x # representa el cambio de la cordenada fila
+                columna = nodo[1] + y # cambio de la cordenada columna
                 # validamos para que no se salga fuera de las paredes de la matriz
                 if fila >= 0 and fila < len(matriz) and columna >= 0 and columna < len(matriz[0]) and matriz[fila][columna] != '#':
                     distancia_auxi = calcular_distancia(nodo, [fila, columna]) # [2, 4, 5, 8]  
@@ -63,12 +63,12 @@ if __name__ == "__main__":
 
     # determinamos cual es la salida mas sercana
 
-    inicio_posicion = posiciones(laberinto, 'E')
+    inicio_posicion = get_posicion(laberinto, 'E')
 
     # obtener la posicion de cad salida
-    posicion1 = posiciones(laberinto, 'S1')
-    posicion2 = posiciones(laberinto, 'S2')
-    posicion3 = posiciones(laberinto, 'S3')
+    posicion1 = get_posicion(laberinto, 'S1')
+    posicion2 = get_posicion(laberinto, 'S2')
+    posicion3 = get_posicion(laberinto, 'S3')
 
     # obtenemos las distancia del inicio con las salida y lo guardamos en un array
     distancias = [
@@ -77,7 +77,8 @@ if __name__ == "__main__":
         { 'posicion': posicion3, 'distancia': calcular_distancia(inicio_posicion, posicion3) }, 
     ]
     # en base a la distancia minima tomamos el valor de la posicion
-    final_posicion = min(distancias, key=lambda x: x['distancia'])['posicion']   
+    final_posicion = min(distancias, key=lambda x: x['distancia'])['posicion']  
+    # print(final_posicion) 
 
     camino = a_estrella(laberinto, inicio_posicion, final_posicion)
     print(camino)
